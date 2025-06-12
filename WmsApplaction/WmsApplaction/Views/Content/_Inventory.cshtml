@@ -7,10 +7,11 @@
             </div>
             <div class="d-flex">
                 <div class="input-group me-3" style="width: 300px;">
-                    <input type="text" class="form-control" placeholder="搜索商品...">
-                    <button class="btn btn-outline-secondary" type="button">
+                    <input type="text" class="form-control" id="searchInput" placeholder="搜索商品...">
+                    <button class="btn btn-outline-secondary" type="button" id="searchBtn">
                         <i class="fas fa-search"></i>
                     </button>
+
                 </div>
                 <button class="btn btn-primary" id="add">
                     <i class="fas fa-plus me-2"></i>添加商品
@@ -20,7 +21,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        @*<div class="col-md-4">
             <div class="card ">
                 <div class="card-header">库存状态</div>
                 <div class="card-body">
@@ -55,18 +56,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
 
-        <div class="col-md-8">
+        <div class="col">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span>库存商品列表</span>
-                    <div class="btn-group">
-                        <button class="btn btn-sm btn-outline-secondary">全部</button>
-                        <button class="btn btn-sm btn-outline-secondary">食品</button>
-                        <button class="btn btn-sm btn-outline-secondary">日化</button>
-                        <button class="btn btn-sm btn-outline-secondary">生鲜</button>
-                    </div>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -75,219 +71,15 @@
                                 <tr>
                                     <th>商品条码</th>
                                     <th>商品名称</th>
-                                    <th>分类</th>
+                                    <th>价格</th>
                                     <th>当前库存</th>
-                                    <th>单位</th>
                                     <th>状态</th>
                                     <th>操作</th>
+
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>6923450656188</td>
-                                    <td>可口可乐</td>
-                                    <td>饮料</td>
-                                    <td>42箱</td>
-                                    <td>箱</td>
-                                    <td><span class="badge bg-warning">库存预警</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            编辑
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-success"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#viewProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            查看
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-warning"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐">
-                                            删除
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6940159430192</td>
-                                    <td>农夫山泉</td>
-                                    <td>饮料</td>
-                                    <td>35箱</td>
-                                    <td>箱</td>
-                                    <td><span class="badge bg-warning">库存预警</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            编辑
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-success"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#viewProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            查看
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-warning"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐">
-                                            删除
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6925303770563</td>
-                                    <td>康师傅红烧牛肉面</td>
-                                    <td>食品</td>
-                                    <td>120箱</td>
-                                    <td>箱</td>
-                                    <td><span class="badge bg-success">库存正常</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            编辑
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-success"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#viewProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            查看
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-warning"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐">
-                                            删除
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6924187826188</td>
-                                    <td>奥利奥夹心饼干</td>
-                                    <td>食品</td>
-                                    <td>86箱</td>
-                                    <td>箱</td>
-                                    <td><span class="badge bg-success">库存正常</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            编辑
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-success"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#viewProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            查看
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-warning"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐">
-                                            删除
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6934567890123</td>
-                                    <td>海飞丝洗发水</td>
-                                    <td>日化</td>
-                                    <td>65瓶</td>
-                                    <td>瓶</td>
-                                    <td><span class="badge bg-success">库存正常</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            编辑
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-success"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#viewProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐"
-                                                data-category="饮料"
-                                                data-quantity="42"
-                                                data-unit="箱"
-                                                data-status="库存预警"
-                                                data-image="">
-                                            查看
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-warning"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteProductModal"
-                                                data-barcode="6923450656188"
-                                                data-name="可口可乐">
-                                            删除
-                                        </button>
-                                    </td>
-                                </tr>
+                            <tbody id="inventory-tbody">
+                                <!-- 数据通过JS动态填充 -->
                             </tbody>
                         </table>
                     </div>
@@ -305,127 +97,170 @@
         </div>
     </div>
 
-    <!-- 添加商品模态框 -->
-    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addProductModalLabel">添加商品</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="productName" class="form-label">商品名称</label>
-                            <input type="text" class="form-control" id="productName" placeholder="请输入商品名称">
-                        </div>
-                        <div class="mb-3">
-                            <label for="productQuantity" class="form-label">数量</label>
-                            <input type="number" class="form-control" id="productQuantity" placeholder="请输入数量">
-                        </div>
-                        <div class="mb-3">
-                            <label for="productPrice" class="form-label">价格</label>
-                            <input type="number" class="form-control" id="productPrice" placeholder="请输入价格" step="0.01">
-                        </div>
-                        <div class="mb-3">
-                            <label for="productImage" class="form-label">图片地址</label>
-                            <input type="text" class="form-control" id="productImage" placeholder="请输入图片URL">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">保存</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- 编辑商品模态框 -->
-    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProductModalLabel">编辑商品</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label class="form-label">商品条码</label>
-                            <input type="text" class="form-control" id="editBarcode" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">商品名称</label>
-                            <input type="text" class="form-control" id="editName">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">分类</label>
-                            <input type="text" class="form-control" id="editCategory">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">数量</label>
-                            <input type="number" class="form-control" id="editQuantity">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">单位</label>
-                            <input type="text" class="form-control" id="editUnit">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">状态</label>
-                            <input type="text" class="form-control" id="editStatus">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">保存</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- 查看商品模态框 -->
-    <div class="modal fade" id="viewProductModal" tabindex="-1" aria-labelledby="viewProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewProductModalLabel">查看商品</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-2"><strong>商品条码：</strong><span id="viewBarcode"></span></div>
-                    <div class="mb-2"><strong>商品名称：</strong><span id="viewName"></span></div>
-                    <div class="mb-2"><strong>分类：</strong><span id="viewCategory"></span></div>
-                    <div class="mb-2"><strong>数量：</strong><span id="viewQuantity"></span></div>
-                    <div class="mb-2"><strong>单位：</strong><span id="viewUnit"></span></div>
-                    <div class="mb-2"><strong>状态：</strong><span id="viewStatus"></span></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
-    <!-- 删除商品模态框 -->
-    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteProductModalLabel">删除商品</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
-                </div>
-                <div class="modal-body">
-                    <p>确定要删除 <strong id="deleteName"></strong> 吗？</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-danger">删除</button>
-                </div>
+<!-- 编辑商品模态框 -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProductModalLabel">编辑商品</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editProductForm">
+                    <div class="mb-3">
+                        <label class="form-label">商品条码</label>
+                        <input type="text" class="form-control" id="editBarcode" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">商品名称</label>
+                        <span class="text-danger error-msg" id="editErrName"></span>
+                        <input type="text" class="form-control" id="editName">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">价格</label>
+                        <span class="text-danger error-msg" id="editErrPrice"></span>
+                        <input type="number" class="form-control" id="editPrice">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">当前库存</label>
+                        <span class="text-danger error-msg" id="editErrQuantity"></span>
+                        <input type="number" class="form-control" id="editQuantity">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">状态</label>
+                        <span class="text-danger error-msg" id="editErrStatus"></span>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="editStatus" id="editStatusNormal" value="库存正常">
+                                <label class="form-check-label" for="editStatusNormal">正常</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="editStatus" id="editStatusDisabled" value="禁用">
+                                <label class="form-check-label" for="editStatusDisabled">禁用</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="saveEditBtn">保存</button>
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- 添加商品模态框 -->
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductModalLabel">添加商品</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label">商品名称</label>
+                        <span class="text-danger error-msg" id="errName"></span>
+                        <input type="text" class="form-control" name="Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">价格</label>
+                        <span class="text-danger error-msg" id="errPrice"></span>
+                        <input type="number" class="form-control" name="Price" required min="0">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">数量</label>
+                        <span class="text-danger error-msg" id="errQuantity"></span>
+                        <input type="number" class="form-control" name="Quantity" required min="0">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">商品图片</label>
+                        <span class="text-danger error-msg" id="errImage"></span>
+                        <input type="file" class="form-control" name="ImageFile" accept="image/*">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="saveAddBtn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 查看商品模态框 -->
+<div class="modal fade" id="viewProductModal" tabindex="-1" aria-labelledby="viewProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewProductModalLabel">查看商品</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3 text-center">
+                        <img id="viewImage" src="" alt="商品图片" style="max-width: 150px; max-height: 150px; object-fit: contain; border:1px solid #eee;" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">商品条码</label>
+                        <div class="form-control-plaintext" id="viewBarcode"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">商品名称</label>
+                        <div class="form-control-plaintext" id="viewName"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">价格</label>
+                        <div class="form-control-plaintext" id="viewPrice"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">当前库存</label>
+                        <div class="form-control-plaintext" id="viewQuantity"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">状态</label>
+                        <div class="form-control-plaintext" id="viewStatus"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 删除商品模态框 -->
+<div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteProductModalLabel">删除商品</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+            </div>
+            <div class="modal-body">
+                <p>确定要删除 <span id="deleteProductName"></span> 吗？</p>
+                <input type="hidden" id="deleteProductId" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
     document.getElementById('add').addEventListener('click', function () {
@@ -434,38 +269,370 @@
     });
 </script>
 <!-- 引入 Bootstrap 5 的 JS（包含 Popper） -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+@*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>*@
+
+
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // 编辑
-        var editModal = document.getElementById('editProductModal');
-        editModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;
-            document.getElementById('editBarcode').value = button.getAttribute('data-barcode');
-            document.getElementById('editName').value = button.getAttribute('data-name');
-            document.getElementById('editCategory').value = button.getAttribute('data-category');
-            document.getElementById('editQuantity').value = button.getAttribute('data-quantity');
-            document.getElementById('editUnit').value = button.getAttribute('data-unit');
-            document.getElementById('editStatus').value = button.getAttribute('data-status');
-        });
+    let currentPage = 1;
+    const pageSize = 10;
+    let totalPage = 1;
 
-        // 查看
-        var viewModal = document.getElementById('viewProductModal');
-        viewModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;
-            document.getElementById('viewBarcode').textContent = button.getAttribute('data-barcode');
-            document.getElementById('viewName').textContent = button.getAttribute('data-name');
-            document.getElementById('viewCategory').textContent = button.getAttribute('data-category');
-            document.getElementById('viewQuantity').textContent = button.getAttribute('data-quantity');
-            document.getElementById('viewUnit').textContent = button.getAttribute('data-unit');
-            document.getElementById('viewStatus').textContent = button.getAttribute('data-status');
-        });
+    function getStatusBadge(status) {
+        if (status === "库存预警") {
+            return '<span class="badge bg-warning">库存预警</span>';
+        } else if (status === "库存正常") {
+            return '<span class="badge bg-success">库存正常</span>';
+        } else if (status === "库存缺货") {
+            return '<span class="badge bg-danger">库存缺货</span>';
+        } else {
+            return '<span class="badge bg-secondary">' + (status || "未知") + '</span>';
+        }
+    }
 
-        // 删除
-        var deleteModal = document.getElementById('deleteProductModal');
-        deleteModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;
-            document.getElementById('deleteName').textContent = button.getAttribute('data-name');
+    function loadInventoryList(page = 1, keyword = "") {
+        fetch(`/kucunguanli/GetInventoryList?page=${page}&pageSize=${pageSize}&keyword=${encodeURIComponent(keyword)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("加载数据出错：" + data.error);
+                    return;
+                }
+                var tbody = document.getElementById('inventory-tbody');
+                tbody.innerHTML = '';
+                data.list.forEach(function (item) {
+                    var isDisabled = item.Status === "禁用";
+                    var deleteBtnClass = isDisabled ? "btn-secondary disabled" : "btn-outline-warning";
+                    var deleteBtnAttr = isDisabled ? "disabled" : "";
+                    var tr = document.createElement('tr');
+                    tr.innerHTML = `
+         <td>${item.Barcode}</td>
+ <td>${item.Name}</td>
+ <td>${item.Price}</td>
+ <td>${item.Quantity}${item.Unit || ''}</td>
+ <td>${getStatusBadge(item.Status)}</td>
+        <td>
+            <button class="btn btn-sm btn-outline-primary kcgleditBtn"
+        data-bs-toggle="modal"
+        data-bs-target="#editProductModal"
+        data-barcode="${item.Barcode}"
+        data-name="${item.Name}"
+        data-price="${item.Price}"
+        data-quantity="${item.Quantity}"
+        data-status="${item.Status || ''}">
+    编辑
+</button>
+            <button class="btn btn-sm btn-outline-success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#viewProductModal"
+                    data-barcode="${item.Barcode}"
+                    data-name="${item.Name}"
+                    data-quantity="${item.Quantity}"
+                    data-price="${item.Price}"
+                    data-image="${item.Immage || ''}"
+                    data-status="${item.Status || ''}">
+                查看
+            </button>
+            <button class="btn btn-sm ${deleteBtnClass}"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteProductModal"
+                    data-barcode="${item.Barcode}"
+                    data-name="${item.Name}"
+                    ${deleteBtnAttr}>
+                删除
+            </button>
+        </td>
+    `;
+                    tbody.appendChild(tr);
+                });
+
+
+                // 分页
+                totalPage = Math.ceil(data.total / pageSize);
+                renderPagination(page, totalPage, keyword);
+            });
+    }
+
+
+    function renderPagination(page, totalPage, keyword = "") {
+        let html = '';
+        html += `<li class="page-item${page === 1 ? ' disabled' : ''}"><a class="page-link" href="#" data-page="${page - 1}">上一页</a></li>`;
+        for (let i = 1; i <= totalPage; i++) {
+            html += `<li class="page-item${i === page ? ' active' : ''}"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+        }
+        html += `<li class="page-item${page === totalPage ? ' disabled' : ''}"><a class="page-link" href="#" data-page="${page + 1}">下一页</a></li>`;
+        document.querySelector('.pagination').innerHTML = html;
+
+        // 绑定事件
+        document.querySelectorAll('.pagination .page-link').forEach(function (el) {
+            el.onclick = function (e) {
+                e.preventDefault();
+                const p = parseInt(this.getAttribute('data-page'));
+                if (p >= 1 && p <= totalPage && p !== currentPage) {
+                    currentPage = p;
+                    loadInventoryList(currentPage, keyword);
+                }
+            }
+        });
+    }
+
+
+    // 页面加载时拉取第一页
+    loadInventoryList(1, "");
+
+
+
+
+</script>
+@*<script src="~/js/jquery-3.3.1.min.js"></script>*@
+<script>
+    // 监听所有编辑按钮的点击事件
+    $(document).on('click', '.kcgleditBtn', function () {
+        // 取出按钮上的 data 属性
+        var barcode = $(this).data('barcode');
+        var name = $(this).data('name');
+        var quantity = $(this).data('quantity');
+        var status = $(this).data('status');
+        var price = $(this).data('price');
+
+        // 输出到控制台
+        console.log('barcode:', barcode);
+        console.log('name:', name);
+        console.log('quantity:', quantity);
+        console.log('status:', status);
+        // 填充到模态框
+        $('#editBarcode').val(barcode);
+        $('#editName').val(name);
+        $('#editQuantity').val(quantity);
+        $('#editPrice').val(price);
+        if (status === "禁用") {
+            $('#editStatusDisabled').prop('checked', true);
+        } else {
+            $('#editStatusNormal').prop('checked', true);
+        }
+
+    });
+
+    // 监听所有查看按钮的点击事件
+    $(document).on('click', '[data-bs-target="#viewProductModal"]', function () {
+        var barcode = $(this).data('barcode');
+        var name = $(this).data('name');
+        var quantity = $(this).data('quantity');
+        var status = $(this).data('status');
+        var price = $(this).data('price');
+        var image = $(this).data('image');
+        var imgPath = image ? '/img/' + encodeURIComponent(image) : '';
+        console.log('图片路径:', imgPath); // 输出到控制台
+        $('#viewBarcode').text(barcode);
+        $('#viewName').text(name);
+        $('#viewQuantity').text(quantity);
+        $('#viewStatus').text(status);
+        $('#viewPrice').text(price !== undefined ? '￥' + price : '');
+        if (imgPath) {
+            $('#viewImage').attr('src',imgPath);
+
+        } else {
+            $('#viewImage').attr('src', ''); // 或设置为默认图片路径
+        }
+    });
+
+
+    // 打开删除模态框时，填充商品信息
+    $(document).on('click', '[data-bs-target="#deleteProductModal"]', function () {
+        var id = $(this).data('barcode');
+        var name = $(this).data('name');
+        $('#deleteProductId').val(id);
+        $('#deleteProductName').text(name);
+    });
+
+    // 确认删除
+    $('#confirmDeleteBtn').off('click').on('click', function () {
+        var id = $('#deleteProductId').val();
+        $.ajax({
+            url: '/kucunguanli/DeleteProduct',
+            type: 'POST',
+            data: { id: id },
+            success: function (res) {
+                if (res.success) {
+                    // 关闭模态框
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('deleteProductModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                    // 只绑定一次，等待模态框完全关闭后再刷新
+                    $('#deleteProductModal').one('hidden.bs.modal', function () {
+                        loadInventoryList(currentPage);
+                    });
+                } else {
+                    alert(res.message || '删除失败');
+                }
+            },
+            error: function () {
+                alert('请求失败');
+            }
         });
     });
+
+
+    // 搜索按钮点击
+    $('#searchBtn').on('click', function () {
+        var keyword = $('#searchInput').val();
+        currentPage = 1;
+        loadInventoryList(currentPage, keyword);
+    });
+
+    // 回车搜索
+    $('#searchInput').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            $('#searchBtn').click();
+        }
+    });
+
+    // 保存按钮点击事件
+    $(document).on('click', '#saveEditBtn', function () {
+        // 清空所有错误提示
+        $('#editErrName').text('');
+        $('#editErrQuantity').text('');
+        $('#editErrStatus').text('');
+        $('#editErrPrice').text('');
+        var price = $('#editPrice').val();
+        var id = $('#editBarcode').val();
+        var name = $.trim($('#editName').val());
+        var quantity = $('#editQuantity').val();
+        var status = $('input[name="editStatus"]:checked').val();
+        var hasError = false;
+
+        if (price === "" || isNaN(price)) {
+            $('#editErrPrice').text('价格不能为空且必须为数字');
+            hasError = true;
+        } else if (parseFloat(price) < 0) {
+            $('#editErrPrice').text('价格不能为负数');
+            hasError = true;
+        }
+        if (!hasError) {
+            price = Math.round(parseFloat(price));
+            $('#editPrice').val(price);
+        }
+        if (!name) {
+            $('#editErrName').text('商品名称不能为空');
+            hasError = true;
+        }
+        if (quantity === "" || isNaN(quantity)) {
+            $('#editErrQuantity').text('数量不能为空且必须为数字');
+            hasError = true;
+        } else if (parseInt(quantity) < 0) {
+            $('#editErrQuantity').text('数量不能为负数');
+            hasError = true;
+        }
+        if (!status) {
+            $('#editErrStatus').text('请选择状态');
+            hasError = true;
+        }
+
+        // 四舍五入数量为整数
+        if (!hasError) {
+            quantity = Math.round(parseFloat(quantity));
+            $('#editQuantity').val(quantity);
+        }
+
+        if (hasError) return;
+
+        $.ajax({
+            url: '/kucunguanli/UpdateProduct',
+            type: 'POST',
+            data: {
+                id: id,
+                name: name,
+                price: price,
+                quantity: quantity,
+                status: status
+            },
+            success: function (res) {
+                if (res.success) {
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('editProductModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                    loadInventoryList(currentPage, $('#searchInput').val());
+                } else {
+                    // 后端返回的错误，优先显示在名称处
+                    $('#editErrName').text(res.message || '保存失败');
+                }
+            },
+            error: function () {
+                $('#editErrName').text('请求失败');
+            }
+        });
+    });
+
+
+    // 保存添加商品
+    $(document).on('click', '#saveAddBtn', function () {
+        // 清空所有错误提示
+        $('.error-msg').text('');
+
+        var name = $.trim($('input[name="Name"]').val());
+        var price = $('input[name="Price"]').val();
+        var quantity = $('input[name="Quantity"]').val();
+        var hasError = false;
+
+        if (!name) {
+            $('#errName').text('商品名称不能为空');
+            hasError = true;
+        }
+        if (price === "" || isNaN(price)) {
+            $('#errPrice').text('价格不能为空且必须为数字');
+            hasError = true;
+        } else if (parseFloat(price) < 0) {
+            $('#errPrice').text('价格不能为负数');
+            hasError = true;
+        }
+        if (quantity === "" || isNaN(quantity)) {
+            $('#errQuantity').text('数量不能为空且必须为数字');
+            hasError = true;
+        } else if (parseInt(quantity) < 0) {
+            $('#errQuantity').text('数量不能为负数');
+            hasError = true;
+        }
+
+        // 价格四舍五入为整数
+        if (!hasError) {
+            price = Math.round(parseFloat(price));
+            $('input[name="Price"]').val(price);
+        }
+
+        if (hasError) return;
+
+        var form = $('#addProductForm')[0];
+        var formData = new FormData(form);
+
+        $.ajax({
+            url: '/kucunguanli/AddProduct',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                if (res.success) {
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('addProductModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                    $('#addProductForm')[0].reset();
+                    loadInventoryList(currentPage, $('#searchInput').val());
+                } else {
+                    // 后端返回的错误，优先显示在图片处
+                    $('#errImage').text(res.message || '添加失败');
+                }
+            },
+            error: function () {
+                $('#errImage').text('请求失败');
+            }
+        });
+    });
+
+
+
+
+
 </script>
