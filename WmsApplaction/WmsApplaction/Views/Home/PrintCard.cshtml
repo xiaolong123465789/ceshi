@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百姓超市 - 出库单打印系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c6e49;
+            --secondary-color: #4c956c;
+            --accent-color: #fefee3;
+            --light-color: #d8f3dc;
+            --dark-color: #1b4332;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .store-name {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        .outbound-card {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .outbound-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .outbound-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .outbound-number {
+            font-size: 1.1rem;
+            color: #666;
+            background-color: #f8f9fa;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        .info-section {
+            flex: 1;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+        }
+
+        .table-container {
+            margin: 30px 0;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+            .table th {
+                background-color: var(--light-color);
+                color: var(--dark-color);
+                font-weight: 600;
+                padding: 15px;
+                border-bottom: 2px solid var(--primary-color);
+            }
+
+            .table td {
+                padding: 12px 15px;
+                vertical-align: middle;
+            }
+
+            .table tbody tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+
+            .table tfoot td {
+                font-weight: 700;
+                background-color: var(--light-color);
+                border-top: 2px solid var(--primary-color);
+                font-size: 1.1rem;
+            }
+
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .signature-box {
+            text-align: center;
+            width: 30%;
+        }
+
+        .signature-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .signature-line {
+            height: 1px;
+            background: #333;
+            margin: 25px 0 10px 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn-print {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+            .btn-print:hover {
+                background-color: var(--dark-color);
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .btn-print i {
+                margin-right: 10px;
+            }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .print-notice {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+            .print-notice i {
+                color: var(--secondary-color);
+                margin-right: 10px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="store-name">百姓超市</div>
+            <div class="subtitle">商品出库单</div>
+        </div>
+
+        <div class="print-section">
+            <div class="outbound-card">
+                <div class="outbound-header">
+                    <div class="outbound-title">出库单详情</div>
+                    <div class="outbound-number">单号: CK20250604001</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-section">
+                        <div class="info-label">出库日期</div>
+                        <div class="info-value">2025-06-04</div>
+                    </div>
+                    <div class="info-section">
+                        <div class="info-label">仓库</div>
+                        <div class="info-value">中心仓库</div>
+                    </div>
+                    <div class="info-section">
+                        <div class="info-label">操作员</div>
+                        <div class="info-value">张经理</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>商品条码</th>
+                                <th>商品名称</th>
+                                <th>规格</th>
+                                <th>单位</th>
+                                <th>单价</th>
+                                <th>出库数量</th>
+                                <th>金额</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>6923450656188</td>
+                                <td>可口可乐</td>
+                                <td>330ml*24</td>
+                                <td>箱</td>
+                                <td>¥48.00</td>
+                                <td>5</td>
+                                <td>¥240.00</td>
+                            </tr>
+                            <tr>
+                                <td>6940159430192</td>
+                                <td>农夫山泉</td>
+                                <td>550ml*24</td>
+                                <td>箱</td>
+                                <td>¥30.00</td>
+                                <td>8</td>
+                                <td>¥240.00</td>
+                            </tr>
+                            <tr>
+                                <td>6925303770563</td>
+                                <td>康师傅红烧牛肉面</td>
+                                <td>桶装*12</td>
+                                <td>箱</td>
+                                <td>¥45.00</td>
+                                <td>4</td>
+                                <td>¥180.00</td>
+                            </tr>
+                            <tr>
+                                <td>6924187826188</td>
+                                <td>奥利奥夹心饼干</td>
+                                <td>116g*24</td>
+                                <td>箱</td>
+                                <td>¥60.00</td>
+                                <td>3</td>
+                                <td>¥180.00</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-end fw-bold">总计:</td>
+                                <td class="fw-bold">¥840.00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="signature-section">
+                    <div class="signature-box">
+                        <div class="signature-label">制单人</div>
+                        <div class="info-value">张经理</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">签字</div>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-label">审核人</div>
+                        <div class="info-value">王主管</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">签字</div>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-label">出库人</div>
+                        <div class="info-value">李仓库员</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">签字</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="print-notice">
+            <i class="fas fa-info-circle"></i>打印提示：点击下方按钮可预览或直接打印出库单。打印时请确保打印机有足够纸张。
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-print" id="previewBtn">
+                <i class="fas fa-eye"></i>打印预览
+            </button>
+            <button class="btn-print" id="printBtn">
+                <i class="fas fa-print"></i>直接打印
+            </button>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 百姓超市仓库管理系统 | 系统生成时间: 2025-06-04 10:30:45</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 打印预览功能
+            document.getElementById('previewBtn').addEventListener('click', function () {
+                // 在打印预览前可以做一些处理
+                alert('请使用浏览器的打印预览功能（通常快捷键为 Ctrl+P）。在打印对话框中，您可以选择打印机和设置打印选项。');
+
+                // 实际工作中，这里可以打开一个包含打印样式的预览窗口
+                // 但现代浏览器都自带打印预览，所以这里直接提示用户
+            });
+
+            // 直接打印功能
+            document.getElementById('printBtn').addEventListener('click', function () {
+                // 调用浏览器的打印功能
+                window.print();
+            });
+
+            // 添加动画效果
+            const printSection = document.querySelector('.print-section');
+            printSection.style.opacity = '0';
+            printSection.style.transition = 'opacity 0.5s ease-in-out';
+
+            setTimeout(() => {
+                printSection.style.opacity = '1';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
+

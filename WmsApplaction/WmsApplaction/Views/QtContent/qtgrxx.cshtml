@@ -1,0 +1,428 @@
+﻿
+@{
+    ViewBag.Title = "qtgrxx";
+    Layout = "~/Views/Shared/_FrontPage.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>简洁购物 - 用户中心</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome 图标 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="~/css/qtindex.css" rel="stylesheet" />
+   
+    <style>
+
+
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #0d6efd;
+        }
+
+        .user-info-card {
+            border: 1px solid rgba(0,0,0,0.125);
+            border-radius: 0.5rem;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: bold;
+            width: 100px;
+            margin-right: 10px;
+            color: #6c757d;
+        }
+
+        .order-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: bold;
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+            button:hover {
+                background-color: #45a049;
+            }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+            .close:hover {
+                color: black;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+            }
+
+        .tab-buttons {
+            margin-bottom: 15px;
+        }
+
+            .tab-buttons button {
+                margin-right: 10px;
+                background-color: #f1f1f1;
+                color: #333;
+            }
+
+                .tab-buttons button.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+        .order-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+            .avatar-upload button {
+                margin-left: 10px;
+            }
+    </style>
+</head>
+<body>
+
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- 用户头像和基本信息 -->
+                <div class="text-center">
+                    <img id="user-avatar" src="https://via.placeholder.com/100" alt="用户头像" class="user-avatar">
+                    <h4>用户名</h4>
+                    <button id="upload-avatar-btn" class="btn btn-outline-primary btn-sm mt-2">
+                        <i class="fas fa-upload me-1"></i>上传头像
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!-- 用户详细信息 -->
+                <div class="user-info-card">
+                    <h5><i class="fas fa-info-circle me-2"></i>详细信息</h5>
+                    <hr>
+                    <div class="info-item">
+                        <span class="info-label">用户名:</span>
+                        <span id="display-name">用户名</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">邮箱:</span>
+                        <span id="display-email">user@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">电话:</span>
+                        <span id="display-phone">13800138000</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">地址:</span>
+                        <span id="display-address">北京市朝阳区某某街道123号</span>
+                    </div>
+                    <button id="edit-info-btn" class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit me-1"></i>修改信息
+                    </button>
+                    <button id="change-password-btn" class="btn btn-outline-secondary btn-sm ms-2">
+                        <i class="fas fa-lock me-1"></i>修改密码
+                    </button>
+                </div>
+
+                <!-- 历史订单 -->
+                <div class="user-info-card">
+                    <h5><i class="fas fa-shopping-bag me-2"></i>历史订单</h5>
+                    <hr>
+                    <div class="tab-buttons mb-3">
+                        <button class="btn btn-sm btn-outline-primary active" onclick="showTab('all')">全部订单</button>
+                        <button class="btn btn-sm btn-outline-primary" onclick="showTab('pending')">待付款</button>
+                        <button class="btn btn-sm btn-outline-primary" onclick="showTab('shipped')">已发货</button>
+                        <button class="btn btn-sm btn-outline-primary" onclick="showTab('completed')">已完成</button>
+                    </div>
+                    <div id="all-orders" class="order-tab">
+                        <div class="order-item">订单号: ORD123456 | 状态: 已完成 | 日期: 2023-05-15</div>
+                        <div class="order-item">订单号: ORD123457 | 状态: 已发货 | 日期: 2023-05-10</div>
+                    </div>
+                    <div id="pending-orders" class="order-tab" style="display:none;">
+                        <div class="order-item">订单号: ORD123458 | 状态: 待付款 | 日期: 2023-05-20</div>
+                    </div>
+                    <div id="shipped-orders" class="order-tab" style="display:none;">
+                        <div class="order-item">订单号: ORD123457 | 状态: 已发货 | 日期: 2023-05-10</div>
+                    </div>
+                    <div id="completed-orders" class="order-tab" style="display:none;">
+                        <div class="order-item">订单号: ORD123456 | 状态: 已完成 | 日期: 2023-05-15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改详细信息模态框 -->
+    <div id="edit-info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>修改详细信息</h2>
+            <div class="form-group">
+                <label for="edit-name">名称:</label>
+                <input type="text" id="edit-name" value="张三">
+            </div>
+            <div class="form-group">
+                <label for="edit-email">邮箱:</label>
+                <input type="email" id="edit-email" value="zhangsan@example.com">
+            </div>
+            <div class="form-group">
+                <label for="edit-phone">电话:</label>
+                <input type="tel" id="edit-phone" value="13800138000">
+            </div>
+            <div class="form-group">
+                <label for="edit-address">收货地址:</label>
+                <input type="text" id="edit-address" value="北京市朝阳区某某街道123号">
+            </div>
+            <button id="save-info-btn">保存</button>
+        </div>
+    </div>
+
+    <!-- 修改密码模态框 -->
+    <div id="change-password-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>修改密码</h2>
+            <div class="form-group">
+                <label for="current-password">当前密码:</label>
+                <input type="password" id="current-password">
+            </div>
+            <div class="form-group">
+                <label for="new-password">新密码:</label>
+                <input type="password" id="new-password">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">确认新密码:</label>
+                <input type="password" id="confirm-password">
+            </div>
+            <button id="save-password-btn">保存</button>
+        </div>
+    </div>
+
+    <!-- 上传头像模态框 -->
+    <div id="upload-avatar-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>上传头像</h2>
+            <div class="form-group">
+                <label for="avatar-file">选择头像文件:</label>
+                <input type="file" id="avatar-file" accept="image/*">
+            </div>
+            <button id="upload-avatar-submit-btn">上传</button>
+        </div>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const editInfoBtn = document.getElementById('edit-info-btn');
+        const changePasswordBtn = document.getElementById('change-password-btn');
+        const uploadAvatarBtn = document.getElementById('upload-avatar-btn');
+        const editInfoModal = document.getElementById('edit-info-modal');
+        const changePasswordModal = document.getElementById('change-password-modal');
+        const uploadAvatarModal = document.getElementById('upload-avatar-modal');
+        const closeBtns = document.querySelectorAll('.close');
+        const saveInfoBtn = document.getElementById('save-info-btn');
+        const savePasswordBtn = document.getElementById('save-password-btn');
+        const uploadAvatarSubmitBtn = document.getElementById('upload-avatar-submit-btn');
+        const avatarFileInput = document.getElementById('avatar-file');
+        const userAvatar = document.getElementById('user-avatar');
+
+        // 显示/隐藏模态框的函数
+        function showModal(modal) {
+            modal.style.display = 'block';
+        }
+
+        function closeModal(modal) {
+            modal.style.display = 'none';
+        }
+
+        // 事件监听器
+        editInfoBtn.addEventListener('click', () => showModal(editInfoModal));
+        changePasswordBtn.addEventListener('click', () => showModal(changePasswordModal));
+        uploadAvatarBtn.addEventListener('click', () => showModal(uploadAvatarModal));
+
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                closeModal(editInfoModal);
+                closeModal(changePasswordModal);
+                closeModal(uploadAvatarModal);
+            });
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == editInfoModal) {
+                closeModal(editInfoModal);
+            } else if (event.target == changePasswordModal) {
+                closeModal(changePasswordModal);
+            } else if (event.target == uploadAvatarModal) {
+                closeModal(uploadAvatarModal);
+            }
+        });
+
+        // 保存详细信息
+        saveInfoBtn.addEventListener('click', () => {
+            const newName = document.getElementById('edit-name').value;
+            const newEmail = document.getElementById('edit-email').value;
+            const newPhone = document.getElementById('edit-phone').value;
+            const newAddress = document.getElementById('edit-address').value;
+
+            document.getElementById('display-name').textContent = newName;
+            document.getElementById('display-email').textContent = newEmail;
+            document.getElementById('display-phone').textContent = newPhone;
+            document.getElementById('display-address').textContent = newAddress;
+
+            closeModal(editInfoModal);
+            alert('详细信息已更新');
+        });
+
+        // 保存密码
+        savePasswordBtn.addEventListener('click', () => {
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('新密码和确认密码不匹配');
+                return;
+            }
+
+            // 这里可以添加密码验证逻辑，例如与后端交互验证当前密码
+            // 示例中我们只模拟成功
+            alert('密码已更新');
+            closeModal(changePasswordModal);
+        });
+
+        // 上传头像
+        uploadAvatarSubmitBtn.addEventListener('click', () => {
+            const file = avatarFileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    userAvatar.src = e.target.result;
+                    closeModal(uploadAvatarModal);
+                    alert('头像已更新');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('请选择头像文件');
+            }
+        });
+
+        // 订单标签切换
+        function showTab(tabName) {
+            // 隐藏所有标签页
+            document.querySelectorAll('.order-tab').forEach(tab => {
+                tab.style.display = 'none';
+            });
+
+            // 显示选中的标签页
+            document.getElementById(`${tabName}-orders`).style.display = 'block';
+
+            // 更新按钮状态
+            document.querySelectorAll('.tab-buttons button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.tab-buttons button[onclick="showTab('${tabName}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>

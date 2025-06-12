@@ -1,0 +1,346 @@
+﻿:root {
+    --primary: #2c6e49;
+    --secondary: #4c956c;
+    --light: #d8f3dc;
+    --dark: #1b4332;
+    --accent: #fefee3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+
+
+/* 导航栏样式 */
+.navbar {
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: white !important;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.85) !important;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    margin: 0 3px;
+}
+
+    .nav-link:hover, .nav-link.active {
+        background-color: rgba(255,255,255,0.15);
+        color: white !important;
+    }
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: #e63946;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-icon {
+    position: relative;
+}
+/* 内容容器 */
+.container-main {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* 前台购物区域 */
+.frontend-section {
+    display: block;
+}
+
+.backend-section {
+    display: none;
+}
+
+.section-title {
+    color: var(--dark);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--light);
+    font-weight: 700;
+    position: relative;
+}
+
+    .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 80px;
+        height: 2px;
+        background: var(--primary);
+    }
+
+/* 商品卡片 */
+.product-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+    border: none;
+    transition: all 0.3s;
+    height: 100%;
+}
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+.product-img {
+    height: 200px;
+    object-fit: cover;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+    .product-img i {
+        font-size: 5rem;
+        color: #dee2e6;
+    }
+
+.product-card .card-body {
+    padding: 20px;
+}
+
+.product-title {
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.product-price {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.product-stock {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+    .product-stock.in-stock {
+        color: #38b000;
+    }
+
+    .product-stock.low-stock {
+        color: #e63946;
+    }
+
+.btn-add-to-cart {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+    .btn-add-to-cart:hover {
+        background-color: var(--dark);
+        transform: scale(1.05);
+    }
+
+/* 购物车样式 */
+.cart-container {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .cart-item-img i {
+        font-size: 2rem;
+        color: #adb5bd;
+    }
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+.cart-summary {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-total {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--primary);
+    padding-top: 10px;
+    border-top: 1px solid #dee2e6;
+}
+
+.btn-checkout {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    width: 100%;
+    margin-top: 20px;
+    transition: all 0.3s;
+}
+
+    .btn-checkout:hover {
+        background-color: var(--dark);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+/* 页脚 */
+.footer {
+    background-color: var(--dark);
+    color: white;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+    .footer-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: var(--secondary);
+    }
+
+.footer-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+
+    .footer-links a:hover {
+        color: white;
+        transform: translateX(5px);
+    }
+#productList .product-img img {
+    height: 250px;
+}
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background: linear-gradient(135deg, var(--primary), var(--dark));
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .product-card {
+        margin-bottom: 20px;
+    }
+}
+
+

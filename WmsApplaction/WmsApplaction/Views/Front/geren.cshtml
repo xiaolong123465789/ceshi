@@ -1,0 +1,458 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百姓超市 - 个人中心</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c6e49;
+            --secondary: #4c956c;
+            --light: #d8f3dc;
+            --dark: #1b4332;
+            --accent: #fefee3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.85) !important;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            margin: 0 3px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255,255,255,0.15);
+            color: white !important;
+        }
+
+        .container-main {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            color: var(--dark);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--light);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .user-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: none;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .user-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .user-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-header i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .user-info {
+            padding: 25px;
+        }
+
+        .user-detail {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .user-detail:hover {
+            background-color: #f8f9fa;
+        }
+
+        .label {
+            font-weight: 600;
+            color: var(--dark);
+            min-width: 100px;
+            display: inline-block;
+        }
+
+        .order-card {
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .order-card:hover {
+            transform: translateX(5px);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .status-completed {
+            background-color: #d1e7dd;
+            color: #0a3622;
+        }
+
+        .status-processing {
+            background-color: #cfe2ff;
+            color: #084298;
+        }
+
+        .status-cancelled {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-action {
+            border-radius: 30px;
+            padding: 6px 15px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        .card-actions {
+            margin-top: 15px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="qt.html">
+                <i class="fas fa-store me-2"></i>百姓超市
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","Front")">
+                            <i class="fas fa-home me-1"></i>首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="qt.html#frontendSection">
+                            <i class="fas fa-shopping-basket me-1"></i>购物
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <i class="fas fa-user me-1"></i>个人中心
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="d-flex">
+                    <a href="#" class="nav-link me-3">
+                        <span class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge" id="cartCount">3</span>
+                        </span>
+                    </a>
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>张经理
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>个人中心</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>账户设置</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="container-main">
+        <h3 class="section-title">个人中心</h3>
+
+        <div class="row">
+            <!-- 用户信息 -->
+            <div class="col-lg-4">
+                <div class="user-card mb-4">
+                    <div class="user-header d-flex align-items-center">
+                        <i class="fas fa-user-circle"></i> 基本信息
+                    </div>
+                    @foreach (var item in ViewBag.jieguo )
+                    {
+                        <div class="user-info">
+                            <div class="user-detail d-flex align-items-center">
+                                <img src="~/img/grtx/@item.Photo" alt="Alternate Text" />
+                                <div>
+                                    <h5 class="mb-0">@item.Name</h5>
+                                    <small>用户ID: @item.ID</small>
+                                </div>
+                            </div>
+                            <div class="user-detail">
+                                <span class="label">邮箱：</span>@item.Emil
+                            </div>
+                            <div class="user-detail">
+                                <span class="label">手机号：</span>@item.Phone
+                            </div>
+                            <div class="user-detail">
+                                <span class="label">收货地址：</span>
+                                @item.Addess
+                            </div>
+                            <div class="d-grid gap-2 mt-3">
+                                <button class="btn btn-primary" onclick="editProfile()">编辑资料</button>
+                                <button class="btn btn-outline-primary" onclick="changePassword()">修改密码</button>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="user-card">
+                    <div class="user-header">
+                        <i class="fas fa-bell"></i> 通知设置
+                    </div>
+                    @foreach (var item in collection)
+                    {
+
+                    }
+                    <div class="user-info">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="emailNotify" checked>
+                            <label class="form-check-label" for="emailNotify">
+                                邮件通知
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="smsNotify" checked>
+                            <label class="form-check-label" for="smsNotify">
+                                短信通知
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 订单历史 -->
+            <div class="col-lg-8">
+                <div class="user-card">
+                    <div class="user-header">
+                        <i class="fas fa-list-ul"></i> 历史订单
+                    </div>
+                    <div class="user-info">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-filter me-2"></i>
+                                <select class="form-select form-select-sm w-auto" onchange="filterOrders(this.value)">
+                                    <option value="all">全部订单</option>
+                                    <option value="completed">已完成</option>
+                                    <option value="processing">进行中</option>
+                                    <option value="cancelled">已取消</option>
+                                </select>
+                            </div>
+                            <div class="text-muted small">共12笔订单</div>
+                        </div>
+
+                        <div id="orderList">
+                            <!-- 订单将通过JS动态加载 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 模拟订单数据
+        const userOrders = [
+            { id: "DD20230615001", amount: 128.00, date: "2023-06-15 09:30", status: "completed" },
+            { id: "DD20230615002", amount: 95.00, date: "2023-06-15 10:15", status: "completed" },
+            { id: "DD20230615003", amount: 210.00, date: "2023-06-15 11:20", status: "processing" },
+            { id: "DD20230614001", amount: 75.00, date: "2023-06-14 14:30", status: "completed" },
+            { id: "DD20230613005", amount: 180.00, date: "2023-06-13 16:45", status: "completed" },
+            { id: "DD20230612003", amount: 320.00, date: "2023-06-12 08:20", status: "cancelled" },
+            { id: "DD20230611008", amount: 150.00, date: "2023-06-11 19:30", status: "processing" }
+        ];
+
+        // 页面加载初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            renderOrders();
+        });
+
+        // 渲染订单列表
+        function renderOrders(filter = 'all') {
+            const orderList = document.getElementById('orderList');
+            let html = '';
+
+            const filteredOrders = filter === 'all' ? userOrders : userOrders.filter(o => o.status === filter);
+
+            if (filteredOrders.length === 0) {
+                html = '<div class="text-center py-4 text-muted">暂无符合条件的订单</div>';
+            } else {
+                filteredOrders.forEach(order => {
+                    let statusClass, statusText;
+                    switch(order.status) {
+                        case 'completed':
+                            statusClass = 'status-completed';
+                            statusText = '已完成';
+                            break;
+                        case 'processing':
+                            statusClass = 'status-processing';
+                            statusText = '进行中';
+                            break;
+                        case 'cancelled':
+                            statusClass = 'status-cancelled';
+                            statusText = '已取消';
+                            break;
+                    }
+
+                    html += `
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-title">订单号: ${order.id}</div>
+                            <div class="order-number">${order.date}</div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div><strong>订单总额:</strong> ¥${order.amount.toFixed(2)}</div>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <div><strong>状态:</strong> <span class="status-badge ${statusClass}">${statusText}</span></div>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <button class="btn btn-outline-primary btn-action" onclick="viewOrder('${order.id}')">
+                                <i class="fas fa-eye me-1"></i>查看详情
+                            </button>
+                            <button class="btn btn-outline-secondary btn-action" onclick="downloadInvoice('${order.id}')">
+                                <i class="fas fa-file-pdf me-1"></i>下载发票
+                            </button>
+                        </div>
+                    </div>
+                    `;
+                });
+            }
+
+            orderList.innerHTML = html;
+        }
+
+        // 过滤订单
+        function filterOrders(status) {
+            renderOrders(status);
+        }
+
+        // 查看订单详情
+        function viewOrder(orderId) {
+            alert('查看订单详情：' + orderId);
+        }
+
+        // 下载发票
+        function downloadInvoice(orderId) {
+            alert('下载发票：' + orderId);
+        }
+
+        // 编辑资料
+        function editProfile() {
+            alert('编辑个人资料');
+        }
+
+        // 修改密码
+        function changePassword() {
+            alert('修改密码');
+        }
+    </script>
+</body>
+</html>

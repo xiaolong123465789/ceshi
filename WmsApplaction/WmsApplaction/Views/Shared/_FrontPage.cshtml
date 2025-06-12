@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="~/css/qtindex.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <!-- 品牌标识 -->
+            <a class="navbar-brand" href="@Url.Action("Index","Front")" onclick="showFrontend(event)">
+                <i class="fas fa-store me-2"></i>百姓超市
+            </a>
+
+            <!-- 移动端菜单按钮 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="切换导航">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 导航内容 -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- 主导航 -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="@Url.Action("Index","Front")" onclick="showFrontend(event)">
+                            <i class="fas fa-home me-1"></i>首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","Front")" onclick="showFrontend(event)">
+                            <i class="fas fa-shopping-basket me-1"></i>购物
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- 右侧功能区 -->
+                <div class="d-flex align-items-center">
+                    <!-- 购物车 -->
+                    <a href="@Url.Action("gwc", "QtContent")"
+                       class="nav-link  position-relative me-3"
+                       id="cartLink"
+                       onclick="showCart(event)"
+                       aria-label="查看购物车 (3 件商品)"
+                       data-cart-count="3">
+                        <span class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge badge bg-danger" id="cartCount">3</span>
+                        </span>
+                    </a>
+
+                    <!-- 用户菜单 -->
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                           id="userDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="fas fa-user-circle me-2"></i>
+                            <span>张经理</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("geren", "Front")">
+                                    <i class="fas fa-user me-2 text-primary"></i>个人中心
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("zhxx", "QtContent")">
+                                    <i class="fas fa-cog me-2 text-primary"></i>账户设置
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-sign-out-alt me-2 text-danger"></i>退出登录
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- 前台购物区域 -->
+    <div class="container-main frontend-section" id="frontendSection">
+        <div class="row">
+            <div class="col-lg-12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="footer-title">百姓超市</h4>
+                    <p>我们致力于为您提供最优质的商品和最便捷的购物体验。</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-weixin fa-2x"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-weibo fa-2x"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-tiktok fa-2x"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-4">
+                    <h4 class="footer-title">购物指南</h4>
+                    <div class="footer-links">
+                        <a href="#">购物流程</a>
+                        <a href="#">会员介绍</a>
+                        <a href="#">常见问题</a>
+                        <a href="#">联系客服</a>
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-4">
+                    <h4 class="footer-title">配送方式</h4>
+                    <div class="footer-links">
+                        <a href="#">上门自提</a>
+                        <a href="#">门店配送</a>
+                        <a href="#">快递运输</a>
+                        <a href="#">配送范围</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <h4 class="footer-title">联系我们</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> 北京市朝阳区百姓路88号</p>
+                    <p><i class="fas fa-phone me-2"></i> 400-888-8888</p>
+                    <p><i class="fas fa-envelope me-2"></i> service@baixinchao.com</p>
+                    <p><i class="fas fa-clock me-2"></i> 营业时间: 8:00-22:00</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-4 pt-3 border-top border-secondary">
+                <p>© 2023 百姓超市 版权所有 | 京ICP备12345678号</p>
+            </div>
+            
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 页面加载时初始化
+        $(document).ready(function () {
+            renderProducts();
+        })
+
+
+        //获取商品
+        $(function () {
+            $.ajax({
+                url: '@Url.Action("GetProducts", "GetProduct")',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    renderProducts(response)
+                }
+            })
+        })
+        // 渲染商品列表
+        function renderProducts(products) {
+            
+            let html = '';
+            products.forEach(pro => {
+                const stockClass = pro.num > 50 ? 'in-stock' : (pro.num > 10 ? '' : 'low-stock');
+                const stockText = pro.num > 50 ? '库存充足' : (pro.num > 10 ? '库存正常' : '库存紧张');
+                //console.log("渲染商品数量", pro.imgee)
+                const imagePath = '/img/' + pro.imgee;
+                html += `
+                                <div class="col-md-4 col-sm-6 mb-4">
+                                    <div class="product-card">
+                                        <div class="product-img">
+                                            <img src="${imagePath}" alt="Alternate Text" style="height:250px;"/>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="product-title">${pro.name}</h5>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="product-price">¥${ pro.price.toFixed(2)}</span>
+                                                <span class="product-stock ${stockClass}">${stockText}</span>
+                                            </div>
+                                            <button class="btn btn-add-to-cart w-100" onclick="addToCart(${pro.id})">
+                                                <i class="fas fa-cart-plus me-2"></i>加入购物车
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+            });
+            $('#productList').html(html);
+        }
+
+
+        // 购物车数据
+        //let cart = [
+        //    { id: 1, name: "可口可乐", price: 48.00, quantity: 2, img: "fas fa-coca-cola" },
+        //    { id: 3, name: "康师傅红烧牛肉面", price: 45.00, quantity: 1, img: "fas fa-utensils" }
+        //];
+
+        // 订单数据
+        const orders = [
+            { id: "DD20230615001", customer: "张先生", amount: 128.00, items: 4, date: "2023-06-15 09:30", status: "pending" },
+            { id: "DD20230615002", customer: "李女士", amount: 95.00, items: 2, date: "2023-06-15 10:15", status: "pending" },
+            { id: "DD20230615003", customer: "王先生", amount: 210.00, items: 5, date: "2023-06-15 11:20", status: "processing" },
+            { id: "DD20230614001", customer: "赵女士", amount: 75.00, items: 1, date: "2023-06-14 14:30", status: "shipped" }
+        ];
+
+       
+
+        // 渲染购物车
+        function renderCart() {
+            let html = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                html += `
+                                <div class="cart-item">
+                                    <div class="cart-item-img">
+                                        <i class="${item.img}"></i>
+                                    </div>
+                                    <div class="cart-item-info">
+                                        <div class="cart-item-title">${item.name}</div>
+                                        <div class="cart-item-price">¥${item.price.toFixed(2)}</div>
+                                    </div>
+                                    <div class="cart-item-quantity">
+                                        <div class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</div>
+                                        <input type="text" class="quantity-input" value="${item.quantity}" readonly>
+                                        <div class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</div>
+                                    </div>
+                                    <div class="cart-item-price ms-3">¥${itemTotal.toFixed(2)}</div>
+                                    <button class="btn btn-sm btn-outline-danger ms-3" onclick="removeFromCart(${item.id})">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                `;
+            });
+
+            $('#cartItems').html(html);
+            $('#subtotal').text(subtotal.toFixed(2));
+            $('#total').text(subtotal.toFixed(2));
+            updateCartCount();
+        }
+
+        // 添加商品到购物车
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1,
+                    img: product.img
+                });
+            }
+
+            renderCart();
+            showAlert(`"${product.name}"已添加到购物车`, "success");
+        }
+
+        // 更新购物车商品数量
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity < 1) item.quantity = 1;
+                renderCart();
+            }
+        }
+
+        // 从购物车移除商品
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            renderCart();
+            showAlert("商品已从购物车移除", "warning");
+        }
+
+        // 更新购物车数量显示
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            $('#cartCount').text(count);
+        }
+
+        // 显示购物车
+        function showCart() {
+            renderCart();
+            $('#cartSection').show();
+            $('#productList').hide();
+            window.scrollTo(0, 0);
+        }
+
+        // 隐藏购物车
+        function hideCart() {
+            $('#cartSection').hide();
+            $('#productList').show();
+        }
+
+        // 提交订单
+        function placeOrder() {
+            if (cart.length === 0) {
+                showAlert("购物车为空，请先添加商品", "warning");
+                return;
+            }
+
+            showAlert("订单提交成功！请等待审核", "success");
+            cart = [];
+            renderCart();
+            hideCart();
+            updateCartCount();
+        }
+
+        // 显示前台界面
+        function showFrontend() {
+            $('.frontend-section').show();
+            $('.backend-section').hide();
+            hideCart();
+            $('.nav-link').removeClass('active');
+            $('.nav-link:eq(0)').addClass('active');
+            window.scrollTo(0, 0);
+        }
+
+        // 显示后台界面
+        function showBackend() {
+            $('.frontend-section').hide();
+            $('.backend-section').show();
+            $('.nav-link').removeClass('active');
+            $('.nav-link:eq(3)').addClass('active');
+            window.scrollTo(0, 0);
+        }
+
+        // 显示提示消息
+        function showAlert(message, type) {
+            // 移除现有提示
+            $(".alert-dismissible").remove();
+
+            // 创建提示元素
+            const alertClass = type === "success" ? "alert-success" : "alert-warning";
+            const alertHtml = `
+                                <div class="alert ${alertClass} alert-dismissible fade show position-fixed top-0 end-0 m-3" style="z-index: 1050;">
+                                    <strong>${type === "success" ? "成功!" : "注意!"}</strong> ${message}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            `;
+
+            // 添加到页面
+            $("body").append(alertHtml);
+
+            // 5秒后自动消失
+            setTimeout(() => {
+                $(".alert-dismissible").alert('close');
+            }, 5000);
+        }
+
+        // 渲染待处理订单
+        function renderPendingOrders() {
+            let html = '';
+            orders.forEach(order => {
+                let statusClass, statusText;
+
+                if (order.status === 'pending') {
+                    statusClass = 'status-pending';
+                    statusText = '待审核';
+                } else if (order.status === 'processing') {
+                    statusClass = 'status-processing';
+                    statusText = '处理中';
+                } else {
+                    statusClass = 'status-shipped';
+                    statusText = '已发货';
+                }
+
+                html += `
+                         <div class="order-card">
+                             <div class="order-header">
+                                 <div class="order-title">订单号: ${order.id}</div>
+                                 <div class="order-number">${order.date}</div>
+                             </div>
+
+                             <div class="row mb-3">
+                                 <div class="col-md-6">
+                                     <div><strong>客户:</strong> ${order.customer}</div>
+                                     <div><strong>商品数量:</strong> ${order.items}件</div>
+                                 </div>
+                                 <div class="col-md-6 text-end">
+                                     <div><strong>状态:</strong> <span class="status-badge ${statusClass}">${statusText}</span></div>
+                                     <div><strong>金额:</strong> ¥${order.amount.toFixed(2)}</div>
+                                 </div>
+                             </div>
+
+                             <div class="d-flex justify-content-end">
+                                 <button class="btn btn-admin-action btn-outline-primary me-2">
+                                     <i class="fas fa-eye me-1"></i>查看详情
+                                 </button>
+                                 <button class="btn btn-admin-action btn-primary">
+                                     <i class="fas fa-check me-1"></i>审核订单
+                                 </button>
+                             </div>
+                         </div>
+                         `;
+            });
+            $('#pendingOrders').html(html);
+        }
+    </script>
+</body>
+</html>
