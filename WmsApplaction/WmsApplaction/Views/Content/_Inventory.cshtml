@@ -22,41 +22,41 @@
 
     <div class="row">
         @*<div class="col-md-4">
-            <div class="card ">
-                <div class="card-header">库存状态</div>
-                <div class="card-body">
-                    <div class="d-flex flex-column">
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between">
-                                <span>正常库存</span>
-                                <span class="badge bg-success">1,224</span>
+                <div class="card ">
+                    <div class="card-header">库存状态</div>
+                    <div class="card-body">
+                        <div class="d-flex flex-column">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>正常库存</span>
+                                    <span class="badge bg-success">1,224</span>
+                                </div>
+                                <div class="progress mt-2">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                                </div>
                             </div>
-                            <div class="progress mt-2">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>库存预警</span>
+                                    <span class="badge bg-warning">24</span>
+                                </div>
+                                <div class="progress mt-2">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 12%"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between">
-                                <span>库存预警</span>
-                                <span class="badge bg-warning">24</span>
-                            </div>
-                            <div class="progress mt-2">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 12%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <span>库存缺货</span>
-                                <span class="badge bg-danger">0</span>
-                            </div>
-                            <div class="progress mt-2">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"></div>
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <span>库存缺货</span>
+                                    <span class="badge bg-danger">0</span>
+                                </div>
+                                <div class="progress mt-2">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
 
         <div class="col">
             <div class="card">
@@ -117,7 +117,7 @@
                     <div class="mb-3">
                         <label class="form-label">商品名称</label>
                         <span class="text-danger error-msg" id="editErrName"></span>
-                        <input type="text" class="form-control" id="editName">
+                        <input type="text" class="form-control" id="editName" readonly>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">价格</label>
@@ -128,7 +128,7 @@
                     <div class="mb-3">
                         <label class="form-label">当前库存</label>
                         <span class="text-danger error-msg" id="editErrQuantity"></span>
-                        <input type="number" class="form-control" id="editQuantity">
+                        <input type="number" class="form-control" id="editQuantity" readonly>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">状态</label>
@@ -274,9 +274,9 @@
 
 
 <script>
-    let currentPage = 1;
-    const pageSize = 10;
-    let totalPage = 1;
+    window.currentPage = window.currentPage || 1;
+    window.pageSize = window.pageSize || 10;
+    window.totalPage = window.totalPage || 1;
 
     function getStatusBadge(status) {
         if (status === "库存预警") {
@@ -429,7 +429,7 @@
         $('#viewStatus').text(status);
         $('#viewPrice').text(price !== undefined ? '￥' + price : '');
         if (imgPath) {
-            $('#viewImage').attr('src',imgPath);
+            $('#viewImage').attr('src', imgPath);
 
         } else {
             $('#viewImage').attr('src', ''); // 或设置为默认图片路径

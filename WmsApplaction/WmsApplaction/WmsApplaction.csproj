@@ -136,6 +136,7 @@
     <Compile Include="Controllers\FrontController.cs" />
     <Compile Include="Controllers\GetProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\kucunguanliController.cs" />
     <Compile Include="Controllers\QtContentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -308,6 +309,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\GetProduct\" />
+    <Folder Include="Views\kucunguanli\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

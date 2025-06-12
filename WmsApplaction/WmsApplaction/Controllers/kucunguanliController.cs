@@ -8,7 +8,7 @@ namespace WmsApplaction.Controllers
 {
     public class kucunguanliController : Controller
     {
-   
+
         // GET: kucunguanli
         public ActionResult zhanshi()
         {
@@ -38,7 +38,7 @@ namespace WmsApplaction.Controllers
                             Name = p.Name,
                             Price = p.Price ?? 0,
                             Quantity = p.Quantity ?? 0,
-                            Immage=p.Image,
+                            Immage = p.Image,
                             Status = p.Status == "0" ? "库存正常" : "禁用"
                         }).ToList();
 
