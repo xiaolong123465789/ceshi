@@ -1,26 +1,13 @@
-﻿<!-- 控制面板 -->
+﻿@model IEnumerable<WmsApplaction.Models.Product>
+
+<!-- 控制面板 -->
 <div class="content-section active" id="dashboard">
     <div class="header">
         <div class="d-flex justify-content-between align-items-center">
             <div>
                 <h2 class="mb-0"><i class="fas fa-tachometer-alt me-2"></i>控制面板</h2>
             </div>
-            <div class="d-flex">
-                <div class="input-group me-3" style="width: 300px;">
-                    <input type="text" class="form-control" placeholder="搜索...">
-                    <button class="btn btn-outline-secondary" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-                <div class="dropdown me-3">
-                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        <span class="notification-icon">
-                            <i class="fas fa-bell"></i>
-                            <span class="notification-badge">3</span>
-                        </span>
-                    </button>
-                </div>
-            </div>
+
         </div>
     </div>
 
@@ -30,7 +17,7 @@
                 <div class="stats-icon">
                     <i class="fas fa-boxes"></i>
                 </div>
-                <div class="stats-value">1,248</div>
+                <div class="stats-value">@ViewBag.TotalQuantity</div>
                 <div class="stats-label">商品库存数量</div>
             </div>
         </div>
@@ -40,7 +27,7 @@
                 <div class="stats-icon">
                     <i class="fas fa-file-invoice-dollar"></i>
                 </div>
-                <div class="stats-value">¥248,560</div>
+                <div class="stats-value">¥@ViewBag.allQuantity</div>
                 <div class="stats-label">库存总价值</div>
             </div>
         </div>
@@ -50,7 +37,7 @@
                 <div class="stats-icon">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <div class="stats-value">87</div>
+                <div class="stats-value">@ViewBag.outQuantity</div>
                 <div class="stats-label">今日出库数量</div>
             </div>
         </div>
@@ -60,64 +47,19 @@
                 <div class="stats-icon">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
-                <div class="stats-value">24</div>
+                <div class="stats-value">@ViewBag.diQuantity</div>
                 <div class="stats-label">低库存商品</div>
             </div>
         </div>
     </div>
 
     <div class="row mt-4">
-
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">最近操作记录</div>
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <i class="fas fa-dolly text-success me-2"></i>
-                                    <span>出库单 CK20230615001</span>
-                                </div>
-                                <small>10分钟前</small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <i class="fas fa-arrow-right-to-bracket text-primary me-2"></i>
-                                    <span>入库单 RK20230614003</span>
-                                </div>
-                                <small>2小时前</small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <i class="fas fa-list-check text-warning me-2"></i>
-                                    <span>库存盘点 PD20230612001</span>
-                                </div>
-                                <small>昨天</small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <i class="fas fa-edit text-info me-2"></i>
-                                    <span>商品信息更新</span>
-                                </div>
-                                <small>昨天</small>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <i class="fas fa-users text-secondary me-2"></i>
-                                    <span>添加新供应商</span>
-                                </div>
-                                <small>2天前</small>
-                            </div>
-                        </li>
+                    <ul class="list-group list-group-flush" id="recent-activities-list">
+                        <li class="list-group-item text-center text-muted">加载中...</li>
                     </ul>
                 </div>
             </div>
@@ -127,7 +69,18 @@
     <div class="row mt-4">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">低库存预警</div>
+                <div class="card-header">
+                    低库存预警
+
+                    <div class="d-flex">
+                        <div class="input-group me-3" style="width: 300px;">
+                            <input type="text" class="form-control" id="lowStockSearchInput" placeholder="搜索...">
+                            <button class="btn btn-outline-secondary" type="button" id="lowStockSearchBtn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -142,60 +95,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>6923450656188</td>
-                                    <td>可口可乐</td>
-                                    <td>42箱</td>
-                                    <td>50箱</td>
-                                    <td><span class="badge bg-warning">预警</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#stockInModal"
-                                                data-name="可口可乐"
-                                                data-quantity="42"
-                                                data-price="3.50"
-                                                data-image="https://example.com/coke.jpg">
-                                            入库
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6940159430192</td>
-                                    <td>农夫山泉</td>
-                                    <td>35箱</td>
-                                    <td>40箱</td>
-                                    <td><span class="badge bg-warning">预警</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#stockInModal"
-                                                data-name="农夫山泉"
-                                                data-quantity="35"
-                                                data-price="2.00"
-                                                data-image="https://example.com/nongfu.jpg">
-                                            入库
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6925303770563</td>
-                                    <td>康师傅红烧牛肉面</td>
-                                    <td>28箱</td>
-                                    <td>30箱</td>
-                                    <td><span class="badge bg-warning">预警</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#stockInModal"
-                                                data-name="康师傅红烧牛肉面"
-                                                data-quantity="28"
-                                                data-price="4.50"
-                                                data-image="https://example.com/kangshifu.jpg">
-                                            入库
-                                        </button>
-                                    </td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.ID</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Quantity 箱</td>
+                                        <td>40箱</td>
+                                        <td><span class="badge bg-warning">预警</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary ruku"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#stockInModal"
+                                                    data-id="@item.ID"
+                                                    data-name="@item.Name"
+                                                    data-quantity="@item.Quantity"
+                                                    data-price="@item.Price"
+                                                    data-image="~/img/@item.Image">
+                                                入库
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+
                             </tbody>
                         </table>
                     </div>
@@ -203,6 +125,7 @@
             </div>
         </div>
     </div>
+
     <!-- 入库模态框 -->
     <div class="modal fade" id="stockInModal" tabindex="-1" aria-labelledby="stockInModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -211,44 +134,172 @@
                     <h5 class="modal-title" id="stockInModalLabel">商品入库</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
-                <div class="modal-body">
-                    <form>
+
+                <form id="inboundForm" method="post">
+                    <div class="modal-body">
                         <div class="mb-3">
+                            <input type="hidden" name="ProductID" id="modalProductID" value="" style="display:none" />
                             <label class="form-label">商品名称</label>
                             <input type="text" class="form-control" id="modalProductName" readonly>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">数量</label>
-                            <input type="number" class="form-control" id="modalProductQuantity">
+                            <label class="form-label">现有数量</label>
+                            <input type="number" class="form-control" id="modalProductQuantity" readonly />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">价格</label>
-                            <input type="text" class="form-control" id="modalProductPrice" readonly>
+                            <label class="form-label">添加数量</label>
+                            <input type="number" class="form-control" id="modaladdQuantity" name="Quantity">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">图片</label>
-                            <img id="modalProductImage" src="" alt="商品图片" class="img-fluid" style="max-height:120px;">
+                            <label class="form-label">送货员</label>
+                            <input type="text" class="form-control" id="modalDeliverer" name="Deliverer">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">保存</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                        <input type="submit" value="保存" class="btn btn-primary" data-bs-dismiss="modal" />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var stockInModal = document.getElementById('stockInModal');
-        stockInModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget || document.activeElement;
-            document.getElementById('modalProductName').value = button.getAttribute('data-name') || '';
-            document.getElementById('modalProductQuantity').value = button.getAttribute('data-quantity') || '';
-            document.getElementById('modalProductPrice').value = button.getAttribute('data-price') || '';
-            document.getElementById('modalProductImage').src = button.getAttribute('data-image') || '';
+    $(function () {
+        $(".ruku").click(function () {
+            var id = $(this).data("id");
+            var name = $(this).data("name");
+            var quantity = $(this).data("quantity");
+            $("#modalProductID").val(id);
+            $("#modalProductName").val(name);
+            $("#modalProductQuantity").val(quantity);
+        });
+        // 低库存模糊搜索
+        function bindLowStockSearch() {
+            $("#lowStockSearchBtn").off("click").on("click", function () {
+                var keyword = $("#lowStockSearchInput").val();
+                $.ajax({
+                    url: '@Url.Action("SearchLowStock", "Content")',
+                    type: 'GET',
+                    data: { keyword: keyword },
+                    success: function (result) {
+                        // 只替换表格tbody
+                        $(".table.table-hover tbody").html(result);
+                        // 重新绑定入库按钮事件
+                        bindRukuBtn();
+                    }
+                });
+            });
+
+            // 支持回车搜索
+            $("#lowStockSearchInput").off("keypress").on("keypress", function (e) {
+                if (e.which === 13) {
+                    $("#lowStockSearchBtn").click();
+                }
+            });
+        }
+        bindLowStockSearch()
+
+        // 入库按钮事件绑定（每次表格刷新后都要重新绑定）
+        function bindRukuBtn() {
+            $(".ruku").off("click").on("click", function () {
+                var id = $(this).data("id");
+                var name = $(this).data("name");
+                var quantity = $(this).data("quantity");
+                $("#modalProductID").val(id);
+                $("#modalProductName").val(name);
+                $("#modalProductQuantity").val(quantity);
+            });
+        }
+
+        // 禁止“添加数量”输入负数
+        $("#modaladdQuantity").on("input", function () {
+            var val = $(this).val();
+            if (val < 0) {
+                $(this).val(0);
+            }
+        });
+        bindRukuBtn()
+
+        // 加载最近操作记录
+        function loadRecentActivities() {
+            $.getJSON('@Url.Action("RecentActivities", "Content")', function (data) {
+                var $list = $("#recent-activities-list");
+                $list.empty();
+                if (data.length === 0) {
+                    $list.append('<li class="list-group-item text-center text-muted">暂无记录</li>');
+                } else {
+                    $.each(data, function (i, item) {
+                        var icon = item.Type === "入库"
+                            ? '<i class="fas fa-arrow-right-to-bracket text-primary me-2"></i>'
+                            : '<i class="fas fa-arrow-right-from-bracket text-success me-2"></i>';
+                        var timeText = item.Time ? timeAgo(parseNetDate(item.Time)) : "";
+
+                        $list.append(
+                            '<li class="list-group-item">' +
+                            '<div class="d-flex justify-content-between">' +
+                            '<div>' + icon +
+                            '<span>' + item.Type + ' - ' + item.Name + '（' + (item.Quantity || 0) + '）</span>' +
+                            '</div>' +
+                            '<small>' + timeText + '</small>' +
+                            '</div>' +
+                            '</li>'
+                        );
+                    });
+                }
+            });
+        }
+
+        // 时间格式化
+        function timeAgo(date) {
+            var now = new Date();
+            var diff = Math.floor((now - date) / 1000);
+            if (diff < 60) return "刚刚";
+            if (diff < 3600) return Math.floor(diff / 60) + "分钟前";
+            if (diff < 86400) return Math.floor(diff / 3600) + "小时前";
+            return Math.floor(diff / 86400) + "天前";
+        }
+        // 解析 /Date(xxx)/ 格式
+        function parseNetDate(str) {
+            return new Date(str);
+        }
+        loadRecentActivities()
+
+              /**
+        * 入库表单AJAX提交
+        * 提交后刷新低库存表格和统计数据
+        */
+        $("#inboundForm").submit(function (e) {
+            e.preventDefault();
+            var form = $(this);
+            var addQuantity = parseInt($("#modaladdQuantity").val(), 10);
+            var deliverer = $.trim($("#modalDeliverer").val());
+            if (isNaN(addQuantity) || addQuantity <= 0) {
+                alert("添加数量必须大于0！");
+                $("#modaladdQuantity").focus();
+                return false;
+            }
+
+            if (!deliverer) {
+                alert("送货员不能为空！");
+                $("#modalDeliverer").focus();
+                return false;
+            }
+            $.ajax({
+                url: '@Url.Action("Inbound", "Content")',
+                type: 'POST',
+                data: form.serialize(),
+                success: function (form) {
+                    // 用返回的部分视图刷新整个内容区
+                    $("#mainContent").html(form);
+                    // 关闭模态框
+                    alert("入库成功！");
+                },
+                error: function () {
+                    alert("入库失败，请重试。");
+                }
+            });
         });
     });
 </script>

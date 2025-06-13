@@ -305,6 +305,7 @@
     <Content Include="Views\QtContent\gwc.cshtml" />
     <Content Include="Views\Front\QtLogin.cshtml" />
     <Content Include="Views\Content\Merchant.cshtml" />
+    <Content Include="Views\Content\_LowStockTableBody.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

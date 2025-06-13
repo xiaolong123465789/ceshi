@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WmsApplaction.Models.Product>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.ID</td>
+        <td>@item.Name</td>
+        <td>@item.Quantity 箱</td>
+        <td>40箱</td>
+        <td><span class="badge bg-warning">预警</span></td>
+        <td>
+            <button class="btn btn-sm btn-primary ruku"
+                    data-bs-toggle="modal"
+                    data-bs-target="#stockInModal"
+                    data-id="@item.ID"
+                    data-name="@item.Name"
+                    data-quantity="@item.Quantity"
+                    data-price="@item.Price"
+                    data-image="~/img/@item.Image">
+                入库
+            </button>
+        </td>
+    </tr>
+}
