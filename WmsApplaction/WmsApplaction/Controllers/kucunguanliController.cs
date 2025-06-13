@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using WmsApplaction.Models;
@@ -51,6 +52,37 @@ namespace WmsApplaction.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult StockIn(string barcode, int quantity, string deliver)
+        {
+            using (var db = new InventoryManagementEntities())
+            {
+                // 1. 查找商品
+                var product = db.Product.FirstOrDefault(p => p.ID.ToString() == barcode );
+                if (product == null)
+                {
+                    return Json(new { success = false, message = "商品不存在" });
+                }
+
+                // 2. 更新商品库存
+                product.Quantity = (product.Quantity ?? 0) + quantity;
+
+                // 3. 新增入库记录
+                var inventory = new Inventory
+                {
+                    ProductID = product.ID,
+                    quantity = quantity,
+                    Time = DateTime.Now,
+                    Deliverer = deliver,
+                    Admin = "系统管理员"
+                };
+                db.Inventory.Add(inventory);
+
+                db.SaveChanges();
+
+                return Json(new { success = true });
+            }
+        }
 
 
         [HttpPost]

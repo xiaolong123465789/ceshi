@@ -240,8 +240,18 @@
                 type: 'POST',
                 data: { id: userId, status: newStatus },
                 success: function (data) {
+                    //$('#supplierList').html($(data).find('#supplierList').html());
+                    //$('#supplierModal').modal('hide');
                     $('#supplierList').html($(data).find('#supplierList').html());
-                    $('#supplierModal').modal('hide');
+                    const modalEl = document.getElementById('supplierModal');
+                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                    if (modalInstance) {
+                        modalInstance.hide();
+                    }
+                    // 保险起见，强制移除 backdrop
+                    document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                    document.body.classList.remove('modal-open');
+                   
                 },
                 error: function () {
                     alert('操作失败，请重试');

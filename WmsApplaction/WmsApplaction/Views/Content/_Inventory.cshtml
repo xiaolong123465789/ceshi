@@ -261,6 +261,50 @@
     </div>
 </div>
 
+<!-- 入库模态框 -->
+<div class="modal fade" id="stockInModal" tabindex="-1" aria-labelledby="stockInModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="stockInModalLabel">商品入库</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+            </div>
+            <div class="modal-body">
+                <form id="stockInForm">
+                    <div class="mb-3">
+                        <label class="form-label">商品名称</label>
+                        <input type="text" class="form-control" id="stockInName" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">价格</label>
+                        <input type="text" class="form-control" id="stockInPrice" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">当前库存</label>
+                        <input type="text" class="form-control" id="stockInCurrentQuantity" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">入库数量</label>
+                        <span class="text-danger error-msg" id="stockInErrQuantity"></span>
+                        <input type="number" class="form-control" id="stockInQuantity" min="0" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">送货人</label>
+                        <span class="text-danger error-msg" id="stockInErrDeliver"></span>
+                        <input type="text" class="form-control" id="stockInDeliver" required>
+                    </div>
+                    <input type="hidden" id="stockInBarcode">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="saveStockInBtn">确认入库</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
     document.getElementById('add').addEventListener('click', function () {
@@ -332,6 +376,14 @@
                     data-image="${item.Immage || ''}"
                     data-status="${item.Status || ''}">
                 查看
+            </button>
+            <button class="btn btn-sm btn-outline-info kucun-in-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#stockInModal"
+                  data-barcode="${item.Barcode}"
+                  data-name="${item.Name}"
+                  data-price="${item.Price}">
+                入库
             </button>
             <button class="btn btn-sm ${deleteBtnClass}"
                     data-bs-toggle="modal"
@@ -632,6 +684,69 @@
     });
 
 
+    // 打开入库模态框时填充数据
+    $(document).on('click', '.kucun-in-btn', function () {
+        $('#stockInBarcode').val($(this).data('barcode'));
+        $('#stockInName').val($(this).data('name'));
+        $('#stockInPrice').val($(this).data('price'));
+        $('#stockInQuantity').val('');
+        $('#stockInDeliver').val('');
+        $('#stockInErrQuantity').text('');
+        $('#stockInErrDeliver').text('');
+        $('#stockInCurrentQuantity').val($(this).closest('tr').find('td').eq(3).text());
+    });
+
+    // 入库保存按钮
+    $(document).on('click', '#saveStockInBtn', function () {
+        $('#stockInErrQuantity').text('');
+        $('#stockInErrDeliver').text('');
+        var barcode = $('#stockInBarcode').val();
+        var quantity = $('#stockInQuantity').val();
+        var deliver = $.trim($('#stockInDeliver').val());
+        var hasError = false;
+
+        if (quantity === "" || isNaN(quantity)) {
+            $('#stockInErrQuantity').text('数量不能为空且必须为数字');
+            hasError = true;
+        } else if (parseInt(quantity) < 0) {
+            $('#stockInErrQuantity').text('数量不能为负数');
+            hasError = true;
+        }
+        if (!hasError) {
+            quantity = Math.round(parseFloat(quantity));
+            $('#stockInQuantity').val(quantity);
+        }
+        if (!deliver) {
+            $('#stockInErrDeliver').text('送货人不能为空');
+            hasError = true;
+        }
+        if (hasError) return;
+
+        // 提交入库请求
+        $.ajax({
+            url: '/kucunguanli/StockIn',
+            type: 'POST',
+            data: {
+                barcode: barcode,
+                quantity: quantity,
+                deliver: deliver
+            },
+            success: function (res) {
+                if (res.success) {
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('stockInModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                    loadInventoryList(currentPage, $('#searchInput').val());
+                } else {
+                    $('#stockInErrQuantity').text(res.message || '入库失败');
+                }
+            },
+            error: function () {
+                $('#stockInErrQuantity').text('请求失败');
+            }
+        });
+    });
 
 
 
