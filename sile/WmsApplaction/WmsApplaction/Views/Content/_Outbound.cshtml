@@ -1,0 +1,346 @@
+﻿<!-- 出入库管理 -->
+<div class="container my-4">
+    <!-- 切换按钮 -->
+    <div class="d-flex mb-3">
+        <button class="btn btn-outline-primary me-2" id="showOutboundList">出库记录</button>
+        <button class="btn btn-outline-success" id="showInboundList">入库记录</button>
+    </div>
+
+    <!-- 记录列表 -->
+    <div id="recordList">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>单号</th>
+                    <th>类型</th>
+                    <th>日期</th>
+                    <th id="chzt">用户</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="recordTableBody" style="overflow-y:auto">
+                <!-- JS渲染出入库记录 -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 详情区域，初始隐藏 -->
+    <div id="recordDetail" style="display:none;">
+        <!-- 详情内容由JS填充 -->
+    </div>
+</div>
+
+<!-- SheetJS for Excel导出 -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+<script>
+    $(function () {
+        // 出库/入库模拟数据
+        let outboundRecords = [
+            //{ id: 1, number: 'CK20230615001', type: '出库', date: '2023-06-15', warehouse: '中心仓库', operator: '张经理', status: '已完成' },
+            //{ id: 2, number: 'CK20230614001', type: '出库', date: '2023-06-14', warehouse: '中心仓库', operator: '王主管', status: '处理中' }
+        ];
+
+        let inboundRecords = [
+            //{ id: 3, number: 'RK20230613001', type: '入库', date: '2023-06-13', warehouse: '中心仓库', operator: '李主管', status: '已完成' }
+        ];
+        //年月日转化
+        function formatDateString(dateString) {
+            // 手动解析日期和时间部分
+            const parts = dateString.split(' ');
+            const month = parts[0];
+            const day = parts[1];
+            const year = parts[2];
+
+            // 创建一个 Date 对象
+            const date = new Date(`${month}/${day}/${year}`);
+            // 格式化日期为 "YYYY-MM-DD"
+            const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+            return formattedDate;
+        }
+        //数据加载
+        function sx() {
+            outboundRecords = [
+                //{ id: 1, number: 'CK20230615001', type: '出库', date: '2023-06-15', warehouse: '中心仓库', operator: '张经理', status: '已完成' },
+                //{ id: 2, number: 'CK20230614001', type: '出库', date: '2023-06-14', warehouse: '中心仓库', operator: '王主管', status: '处理中' }
+            ];
+
+            inboundRecords = [
+                //{ id: 3, number: 'RK20230613001', type: '入库', date: '2023-06-13', warehouse: '中心仓库', operator: '李主管', status: '已完成' }
+            ];
+            $.ajax({
+                url: '/Content/Outboundsx',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.success) {
+                        data.list.forEach(function (item) {
+                            var date = formatDateString(item.Date);
+                            outboundRecords.push({ id: item.OrderID, number: "ck" + item.OrderID, type: '出库', date: date, operator: item.username, status: item.zt == "1" ? "待出货" : "已出货", zt: item.zt == "2" ? "disabled" : "" });
+                        })
+                        data.slist.forEach(function (item) {
+                            var date = formatDateString(item.Date);
+                            inboundRecords.push({ id: item.OrderID, number: "rk" + item.OrderID, type: '入库', date: date, operator: item.username, status: "已入库", zt: "" });
+                        })
+                        loadRecords('outbound');
+                    } else {
+                        alert('加载出库记录失败：' + data.message);
+                    }
+                },
+                error: function () {
+                    alert('网络错误，请稍后再试');
+                }
+            });
+        }
+
+        // 详情模板
+        function getDetailHtml(record, callback) {
+            let html = `
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>${record.type}单详情</span>
+            <button class="btn btn-secondary btn-sm" id="backToList">返回列表</button>
+        </div>
+        <div class="card-body">
+            <div class="d-flex mb-3 gap-2">
+                <button class="btn btn-outline-secondary btn-sm" id="printBtn">
+                    <i class="fas fa-print me-1"></i> 打印
+                </button>
+                <button class="btn btn-outline-success btn-sm" id="exportExcelBtn">
+                    <i class="fas fa-file-excel me-1"></i> 导出Excel
+                </button>
+                <button class="btn btn-outline-primary btn-sm" id="exportCsvBtn">
+                    <i class="fas fa-file-csv me-1"></i> 导出CSV
+                </button>
+                <button class="btn btn-outline-danger btn-sm" id="deleteBtn">
+                    <i class="fas fa-trash-alt me-1"></i> 删除出库单
+                </button>
+            </div>
+            <div class="outbound-card">
+                <div class="outbound-header">
+                    <div class="outbound-title">百姓超市 - 商品${record.type}单</div>
+                    <div class="outbound-number">单号: <span>${record.number}</span></div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div><strong>${record.type}日期:</strong> <span>${record.date}</span></div>
+                        <div><strong>用户:</strong> ${record.operator}</div>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <div><strong>状态:</strong> <span class="status-badge">${record.status}</span></div>
+                        <div><strong>备注:</strong> 门店补货</div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover" id="detailTable">
+                        <thead>
+                            <tr>
+                                <th>商品名称</th>
+                                <th>单价</th>
+                                <th>${record.type}数量</th>
+                                <th>单位</th>
+                                <th>金额</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+    `;
+
+            // 异步加载明细
+            $.ajax({
+                url: '/Content/xs',
+                type: 'POST',
+                data: { id: record.id, type:record.type },
+                success: function (data) {
+                    let total = 0;
+                    if (data.success) {
+                        data.dingdan.forEach(r => {
+                            const subtotal = r.price * r.quantiy;
+                            total += subtotal;
+                            html += `<tr>
+                        <td>${r.name}</td>
+                        <td>¥${r.price}</td>
+                        <td>${r.quantiy}</td>
+                        <td>件</td>
+                        <td>¥${subtotal}</td>
+                    </tr>`;
+                        });
+                    } else {
+                        html += `<tr><td colspan="5">加载出库记录失败：${data.message}</td></tr>`;
+                    }
+                    html += `
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="text-end fw-bold">总计:</td>
+                                <td class="fw-bold">¥${total.toFixed(2)}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="mt-4">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>制单人:</strong> 张经理</div>
+                        <div><strong>审核人:</strong> 王主管</div>
+                        <div><strong>${record.type}人:</strong> 李仓库员</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+                    callback(html);
+                },
+                error: function () {
+                    html += `<tr><td colspan="5">网络错误，请稍后再试</td></tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="text-end fw-bold">总计:</td>
+                                <td class="fw-bold">¥0.00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="mt-4">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>制单人:</strong> 张经理</div>
+                        <div><strong>审核人:</strong> 王主管</div>
+                        <div><strong>${record.type}人:</strong> 李仓库员</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+                    callback(html);
+                }
+            });
+        }
+
+
+        // 加载记录列表
+        function loadRecords(type) {
+            let records = type === 'outbound' ? outboundRecords : inboundRecords;
+            let html = '';
+            records.forEach(r => {
+                html += `<tr>
+                <td>${r.number}</td>
+                <td>${r.type}</td>
+                <td>${r.date}</td>
+                <td>${r.operator}</td>
+                <td>${r.status}</td>
+                <td>
+                    <button class="btn btn-sm btn-info view-detail" data-id="${r.id}" data-type="${r.type}">查看</button>`;
+
+                // 根据条件添加额外按钮
+                if (r.type === '出库') { // 替换 'someCondition' 为你的判断条件
+                    html += `<button class="btn btn-sm btn-danger extra-button ckbtn" data-id="${r.id}" ${r.zt}>出库</button>`;
+                }
+
+                html += `</td>
+            </tr>`;
+            });
+            $('#recordTableBody').html(html);
+            $('#recordList').show();
+            $('#recordDetail').hide();
+        }
+
+        // 切换按钮
+        $('#showOutboundList').click(function () { $("#chzt").html("用户"); loadRecords('outbound'); });
+        $('#showInboundList').click(function () { $("#chzt").html("送货员"); loadRecords('inbound'); });
+
+        // 查看详情
+        $('#recordTableBody').on('click', '.view-detail', function () {
+            const id = $(this).data('id');
+            const type = $(this).data('type');
+            let record = (type === '出库' ? outboundRecords : inboundRecords).find(r => r.id === id);
+            // 这里调用 getDetailHtml，并用回调渲染
+            getDetailHtml(record, function (html) {
+                $('#recordDetail').html(html).show();
+                $('#recordList').hide();
+            });
+        });
+
+
+        // 返回列表
+        $('#recordDetail').on('click', '#backToList', function () {
+            $('#recordDetail').hide();
+            $('#recordList').show();
+        });
+
+        $('#recordTableBody').on('click', '.ckbtn', function () {
+            alert($(this).data("id"));
+            $.ajax({
+                url: '/Content/ddck',
+                type: 'POST',
+                data: { id: $(this).data("id") },
+                success: function (data) {
+                    if (data.success) {
+                        alert('出库成功！');
+                        sx();
+                    } else {
+                        alert('出库失败');
+                    }
+                },
+                error: function () {
+                    alert('网络错误，请稍后再试');
+                }
+            });
+        });
+
+        // 打印
+        $('#recordDetail').on('click', '#printBtn', function () {
+            window.print();
+        });
+
+        // 导出Excel
+        $('#recordDetail').on('click', '#exportExcelBtn', function () {
+            const table = document.querySelector('#recordDetail table');
+            if (!table) return alert('未找到表格');
+            if (typeof XLSX === 'undefined') {
+                alert('请引入SheetJS库以支持Excel导出');
+                return;
+            }
+            const wb = XLSX.utils.table_to_book(table, { sheet: "出库单" });
+            XLSX.writeFile(wb, '出库单详情.xlsx');
+        });
+
+        // 导出CSV
+        $('#recordDetail').on('click', '#exportCsvBtn', function () {
+            const table = document.querySelector('#recordDetail table');
+            if (!table) return alert('未找到表格');
+            let csv = '';
+            $(table).find('tr').each(function () {
+                let row = [];
+                $(this).find('th,td').each(function () {
+                    row.push('"' + $(this).text().replace(/"/g, '""') + '"');
+                });
+                csv += row.join(',') + '\n';
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '出库单详情.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // 删除出库单
+        $('#recordDetail').on('click', '#deleteBtn', function () {
+            if (confirm('确定要删除此出库单吗？此操作不可恢复！')) {
+                alert('出库单已删除（请对接后端接口实现实际删除）');
+                $('#recordDetail').hide();
+                $('#recordList').show();
+            }
+        });
+        sx();
+        // 默认加载出库记录
+        //loadRecords('outbound');
+
+    });
+</script>

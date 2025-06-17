@@ -1,0 +1,98 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|c:\\users\\123\\desktop\\\u4E94\u5929\u901F\u901A\\sile\\wmsapplaction\\wmsapplaction\\views\\content\\_outbound.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\views\\content\\_outbound.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\wmsapplaction\\controllers\\contentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\controllers\\contentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\wmsapplaction\\controllers\\frontcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\controllers\\frontcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\wmsapplaction\\views\\content\\_inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\views\\content\\_inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Outbound.cshtml",
+              "DocumentMoniker": "C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Outbound.cshtml",
+              "RelativeDocumentMoniker": "WmsApplaction\\Views\\Content\\_Outbound.cshtml",
+              "ToolTip": "C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Outbound.cshtml",
+              "RelativeToolTip": "WmsApplaction\\Views\\Content\\_Outbound.cshtml",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAiwJwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T03:50:24.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrontController.cs",
+              "DocumentMoniker": "C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\WmsApplaction\\Controllers\\FrontController.cs",
+              "RelativeDocumentMoniker": "WmsApplaction\\Controllers\\FrontController.cs",
+              "ToolTip": "C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\WmsApplaction\\Controllers\\FrontController.cs",
+              "RelativeToolTip": "WmsApplaction\\Controllers\\FrontController.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T05:32:33.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Inventory.cshtml",
+              "DocumentMoniker": "C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Inventory.cshtml",
+              "RelativeDocumentMoniker": "WmsApplaction\\Views\\Content\\_Inventory.cshtml",
+              "ToolTip": "C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Inventory.cshtml",
+              "RelativeToolTip": "WmsApplaction\\Views\\Content\\_Inventory.cshtml",
+              "ViewState": "AgIAABwBAAAAAAAAAAAAAJ8CAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T12:18:57.897Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ContentController.cs",
+              "DocumentMoniker": "C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\WmsApplaction\\Controllers\\ContentController.cs",
+              "RelativeDocumentMoniker": "WmsApplaction\\Controllers\\ContentController.cs",
+              "ToolTip": "C:\\Users\\123\\Desktop\\\u4E94\u5929\u901F\u901A\\sile\\WmsApplaction\\WmsApplaction\\Controllers\\ContentController.cs",
+              "RelativeToolTip": "WmsApplaction\\Controllers\\ContentController.cs",
+              "ViewState": "AgIAALQAAAAAAAAAAAAWwNYAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T01:06:21.992Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

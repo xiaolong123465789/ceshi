@@ -3,7 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\wmsapplaction\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\wmsapplaction\\controllers\\kucunguanlicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\controllers\\kucunguanlicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\wmsapplaction\\views\\content\\_inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\views\\content\\_inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|c:\\users\\123\\desktop\\work\\ces2\\wmsapplaction\\wmsapplaction\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -11,12 +19,8 @@
       "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\controllers\\contentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|c:\\users\\123\\desktop\\work\\ces2\\wmsapplaction\\wmsapplaction\\views\\content\\_stock.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\wmsapplaction\\views\\content\\_stock.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\views\\content\\_stock.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|c:\\users\\123\\desktop\\work\\ces2\\wmsapplaction\\wmsapplaction\\views\\content\\_inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\views\\content\\_inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\wmsapplaction\\models\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\wmsapplaction\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\wmsapplaction\\controllers\\kucunguanlicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|solutionrelative:wmsapplaction\\controllers\\kucunguanlicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A096025D-FA3A-49A5-ACAB-9F1624449636}|WmsApplaction\\WmsApplaction.csproj|C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\wmsapplaction\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,17 +62,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "WmsApplaction\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "WmsApplaction\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-11T04:41:46.893Z",
               "IsPinned": true,
@@ -80,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "WmsApplaction\\Views\\Shared\\_Layout.cshtml",
@@ -90,19 +90,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-11T12:49:05.23Z",
               "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Stock.cshtml",
-              "DocumentMoniker": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Stock.cshtml",
-              "RelativeDocumentMoniker": "WmsApplaction\\Views\\Content\\_Stock.cshtml",
-              "ToolTip": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Stock.cshtml",
-              "RelativeToolTip": "WmsApplaction\\Views\\Content\\_Stock.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADABAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-13T00:55:30.117Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -118,6 +105,18 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Stock.cshtml",
+              "DocumentMoniker": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Stock.cshtml",
+              "RelativeDocumentMoniker": "WmsApplaction\\Views\\Content\\_Stock.cshtml",
+              "ToolTip": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Stock.cshtml",
+              "RelativeToolTip": "WmsApplaction\\Views\\Content\\_Stock.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADABAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-13T00:55:30.117Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
               "Title": "Model1.edmx [Diagram1]",
               "DocumentMoniker": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Models\\Model1.edmx",
@@ -129,25 +128,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "kucunguanliController.cs",
               "DocumentMoniker": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Controllers\\kucunguanliController.cs",
               "RelativeDocumentMoniker": "WmsApplaction\\Controllers\\kucunguanliController.cs",
               "ToolTip": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Controllers\\kucunguanliController.cs",
               "RelativeToolTip": "WmsApplaction\\Controllers\\kucunguanliController.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAUwDwAAABYAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAYwD4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T08:54:39.308Z"
+              "WhenOpened": "2025-06-12T08:54:39.308Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "_Inventory.cshtml",
               "DocumentMoniker": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Inventory.cshtml",
               "RelativeDocumentMoniker": "WmsApplaction\\Views\\Content\\_Inventory.cshtml",
               "ToolTip": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Views\\Content\\_Inventory.cshtml",
               "RelativeToolTip": "WmsApplaction\\Views\\Content\\_Inventory.cshtml",
-              "ViewState": "AgIAAHkBAAAAAAAAAAAAAIwBAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAG0BAAAAAAAAAAAAAHkBAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-12T08:53:34.816Z",
               "EditorCaption": ""
@@ -166,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ContentController.cs",
               "DocumentMoniker": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Controllers\\ContentController.cs",
               "RelativeDocumentMoniker": "WmsApplaction\\Controllers\\ContentController.cs",
@@ -174,8 +174,7 @@
               "RelativeToolTip": "WmsApplaction\\Controllers\\ContentController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T03:11:03.643Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T03:11:03.643Z"
             },
             {
               "$type": "Document",
@@ -191,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Inventory.cs",
               "DocumentMoniker": "C:\\Users\\123\\Desktop\\work\\ces2\\WmsApplaction\\WmsApplaction\\Models\\Inventory.cs",
               "RelativeDocumentMoniker": "WmsApplaction\\Models\\Inventory.cs",

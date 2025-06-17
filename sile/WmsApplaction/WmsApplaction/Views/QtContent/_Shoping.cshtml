@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_FrontPage.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Shoping</title>
+</head>
+<body>
+    <div class="cart-container ">
+    <div id="cartItems">
+        <!-- 购物车商品通过JS动态加载 -->
+    </div>
+
+    <div class="cart-summary">
+        <div class="summary-item">
+            <span>商品总计</span>
+            <span>¥<span id="subtotal">0.00</span></span>
+        </div>
+        <div class="summary-item">
+            <span>运费</span>
+            <span>¥0.00</span>
+        </div>
+        <div class="summary-item">
+            <span>优惠折扣</span>
+            <span>-¥0.00</span>
+        </div>
+        <div class="summary-item summary-total">
+            <span>应付总额</span>
+            <span>¥<span id="total">0.00</span></span>
+        </div>
+
+        <button class="btn-checkout" onclick="placeOrder()">
+            <i class="fas fa-check-circle me-2"></i>提交订单
+        </button>
+    </div>
+</div>
+</body>
+</html>

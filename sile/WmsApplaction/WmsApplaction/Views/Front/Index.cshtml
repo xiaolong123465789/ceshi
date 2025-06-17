@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_FrontPage.cshtml";
+
+}
+<div class="d-flex justify-content-between align-items-center mb-4 active">
+    <h3 class="section-title">商品列表</h3>
+    <div class="d-flex">
+        <div class="input-group" style="width: 300px;">
+            <input type="text" class="form-control" placeholder="搜索商品...">
+            <button class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="row" id="productList">
+    商品将通过JS动态加载
+</div>
+
+<script>
+        //获取商品
+        $(function () {
+            $.ajax({
+                url: '@Url.Action("GetProducts", "GetProduct")',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    renderProducts(response)
+                }
+            })
+
+            //搜索商品功能
+            $('.input-group button').on('click', function () {
+                const searchTerm = $('.input-group input').val().trim();
+                if (searchTerm) {
+                    $.ajax({
+                        url: '@Url.Action("SearchProducts", "GetProduct")',
+                        type: 'POST',
+                        data: { query: searchTerm },
+                        dataType: 'json',
+                        success: function (response) {
+                            renderProducts(response);
+                        },
+                        error: function () {
+                            alert('搜索失败，请稍后再试。');
+                        }
+                    });
+                } else {
+                    // 如果搜索框为空，重新加载所有商品
+                    $.ajax({
+                        url: '@Url.Action("GetProducts", "GetProduct")',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            renderProducts(response);
+                        }
+                    });
+                }
+            });
+        })
+        // 渲染商品列表
+        function renderProducts(products) {
+
+            let html = '';
+            products.forEach(pro => {
+                const stockClass = pro.num > 50 ? 'in-stock' : (pro.num > 10 ? '' : 'low-stock');
+                const stockText = pro.num > 50 ? '库存充足' : (pro.num > 10 ? '库存正常' : '库存紧张');
+                const imagePath = '/img/' + pro.imgee;
+                html += `
+                                <div class="col-md-4 col-sm-6 mb-4">
+                                    <div class="product-card">
+                                        <div class="product-img">
+                                            <img src="${imagePath}" alt="Alternate Text" style="height:250px;"/>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="product-title">${pro.name}</h5>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="product-price">¥${ pro.price.toFixed(2)}</span>
+                                                <span class="product-stock ${stockClass}">${stockText}</span>
+                                            </div>
+                                            <button class="btn btn-add-to-cart w-100" onclick="addToCart(${pro.id})">
+                                                <i class="fas fa-cart-plus me-2" ></i>加入购物车
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+            });
+            $('#productList').html(html);
+    }
+</script>
